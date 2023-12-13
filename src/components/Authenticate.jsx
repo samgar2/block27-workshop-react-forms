@@ -18,8 +18,9 @@ export default function Authenticate({ token }) {
             }
             );
             const result = await response.json();
-            setSuccessMessage(result.message);
-            console.log(result);
+
+            // Display the username on the page after clicking the Authenticate Token button (with the "correctly authenticated" message)
+            setSuccessMessage(`${result.message} Hello ${result.data.username.username}!`)
 
         } catch (error) {
             setError(error.message)
