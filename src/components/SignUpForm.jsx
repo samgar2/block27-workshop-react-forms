@@ -9,7 +9,17 @@ export default function SignUpForm({ setToken }) {
     // Submit function
     async function handleSubmit(event) {
         event.preventDefault()
+
         try {
+            // Form validation
+            if (username.length < 8) {
+                console.log("too short")
+                throw new Error("Please choose a username with at least 8 characters")
+            } else if (password.length < 8) {
+                console.log("needs more characters")
+                throw new Error("Please choose a password with at least 8 characters")
+            }
+
             const response = await fetch("https://fsa-jwt-practice.herokuapp.com/signup", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
